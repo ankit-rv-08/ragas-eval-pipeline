@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from typing import Optional
 
 from dotenv import load_dotenv
+from groq import BadRequestError
 from langchain_community.vectorstores import Chroma
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_groq import ChatGroq
@@ -99,10 +100,29 @@ class RAGPipeline:
             )
         return "\n\n".join(parts)
 
+    def _invoke_with_retry(
+        self, inputs: dict[str, str], max_retries: int = 5, base_delay: int = 20
+    ):
+        for attempt in range(max_retries):
+            try:
+                return self.chain.invoke(inputs)
+            except BadRequestError as error:
+                is_rate_limited = getattr(error, "status_code", None) == 429 or (
+                    "429" in str(error) or "rate" in str(error).lower()
+                )
+                if not is_rate_limited or attempt == max_retries - 1:
+                    raise
+                delay = base_delay * (2**attempt)
+                print(
+                    f"Rate limited, retrying in {delay}s "
+                    f"(attempt {attempt + 1}/{max_retries})..."
+                )
+                time.sleep(delay)
+
     def answer(self, question: str) -> RAGResult:
         start = time.perf_counter()
         chunks = self.retrieve(question)
-        response = self.chain.invoke(
+        response = self._invoke_with_retry(
             {
                 "context": self.format_context(chunks),
                 "question": question,

@@ -1,0 +1,62 @@
+[
+  {
+    "question": "What is coronary artery disease?",
+    "ground_truth": "Coronary artery disease is the narrowing of the coronary arteries due to plaque accumulation.",
+    "source_page": 1
+  },
+  {
+    "question": "What does binary stenosis represent in the Coronary Atlas models?",
+    "ground_truth": "The models predict the presence or absence of significant stenosis at a 50% narrowing threshold; severity grading is not modeled.",
+    "source_page": 9
+  },
+  {
+    "question": "Which coronary artery targets are predicted by the Coronary Atlas models?",
+    "ground_truth": "The models predict overall CAD status and stenosis in the Left Anterior Descending (LAD), Left Circumflex (LCX), and Right Coronary Artery (RCA).",
+    "source_page": 1
+  },
+  {
+    "question": "What is the size of the dataset used to train the Coronary Atlas models?",
+    "ground_truth": "The dataset contains 303 patient records with approximately 55 features.",
+    "source_page": 2
+  },
+  {
+    "question": "Which dataset was used to train the Coronary Atlas prediction models?",
+    "ground_truth": "The UCI Machine Learning Repository's Extension of the Z-Alizadeh Sani dataset.",
+    "source_page": 2
+  },
+  {
+    "question": "Which risk factors are included among the Coronary Atlas features?",
+    "ground_truth": "The risk-factor features include diabetes, hypertension, smoking history, family history, obesity, dyslipidemia, chronic renal failure, and cerebrovascular accident.",
+    "source_page": 2
+  },
+  {
+    "question": "Which ECG findings are included among the Coronary Atlas features?",
+    "ground_truth": "The ECG features include Q wave, ST elevation, ST depression, T inversion, LVH, poor R progression, and bundle branch block.",
+    "source_page": 2
+  },
+  {
+    "question": "Which echocardiographic findings are included among the Coronary Atlas features?",
+    "ground_truth": "The echocardiographic features include ejection fraction, regional wall motion abnormality, and valvular heart disease.",
+    "source_page": 2
+  },
+  {
+    "question": "What ML model architecture was used for prediction in Coronary Atlas?",
+    "ground_truth": "Four independent XGBoost classifiers were trained, one for each target: CAD, LAD, LCX, and RCA.",
+    "source_page": 3
+  },
+  {
+    "question": "What is SHAP and how is it used in Coronary Atlas?",
+    "ground_truth": "SHAP (Shapley Additive Explanations) with TreeExplainer is computed per prediction to show how features pushed the risk up or down relative to the baseline.",
+    "source_page": 4
+  },
+  {
+    "question": "What were the ROC-AUC scores for CAD and LAD in the Coronary Atlas models?",
+    "ground_truth": "The ROC-AUC was 0.89 for overall CAD and 0.87 for LAD.",
+    "source_page": 6
+  },
+  {
+    "question": "Why are the LCX and RCA models weaker than CAD and LAD?",
+    "ground_truth": "LCX and RCA have only approximately 115 and 114 positive cases, compared with approximately 216 and 220 for CAD and LAD. This class imbalance limits the models' ability to learn robust decision boundaries.",
+    "source_page": 8
+  }
+]
