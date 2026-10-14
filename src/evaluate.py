@@ -12,7 +12,7 @@ from pathlib import Path
 
 from datasets import Dataset
 from dotenv import load_dotenv
-from groq import Groq
+from openai import OpenAI
 from sqlalchemy import text
 
 from src.rag import RAGPipeline
@@ -26,6 +26,7 @@ CHUNK_SIZE = 800
 TOP_K = 5
 EMBED_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 JUDGE_MODEL = "openai/gpt-oss-120b"
+GROQ_BASE_URL = "https://api.groq.com/openai/v1"
 
 
 def _install_ragas_compatibility_shim() -> None:
@@ -146,7 +147,10 @@ def main() -> None:
     judge = llm_factory(
         JUDGE_MODEL,
         provider="openai",
-        client=Groq(api_key=os.environ["GROQ_API_KEY"]),
+        client=OpenAI(
+            api_key=os.environ["GROQ_API_KEY"],
+            base_url=GROQ_BASE_URL,
+        ),
         temperature=0.0,
     )
     embeddings = RagasHuggingFaceEmbeddings(model=EMBED_MODEL)
