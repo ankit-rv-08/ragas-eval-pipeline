@@ -112,10 +112,10 @@ def main() -> None:
     from ragas import evaluate
     from ragas.embeddings import HuggingFaceEmbeddings as RagasHuggingFaceEmbeddings
     from ragas.llms import llm_factory
-    from ragas.metrics.collections.answer_relevancy import AnswerRelevancy
-    from ragas.metrics.collections.context_precision import ContextPrecision
-    from ragas.metrics.collections.context_recall import ContextRecall
-    from ragas.metrics.collections.faithfulness import Faithfulness
+    from ragas.metrics._answer_relevance import AnswerRelevancy
+    from ragas.metrics._context_precision import ContextPrecision
+    from ragas.metrics._context_recall import ContextRecall
+    from ragas.metrics._faithfulness import Faithfulness
 
     from src.db import engine
 
