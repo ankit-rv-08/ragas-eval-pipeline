@@ -1,0 +1,32 @@
+# Core
+python-dotenv>=1.0.0
+pydantic>=2.0.0
+
+# RAG
+langchain>=0.3.0
+langchain-community>=0.3.0
+langchain-text-splitters>=0.3.0
+langchain-groq>=0.2.0
+langchain-huggingface>=0.1.0
+chromadb>=0.5.0
+pypdf>=5.0.0
+
+# Embeddings
+sentence-transformers>=3.0.0
+
+# Evaluation
+ragas>=0.2.0
+datasets>=3.0.0
+
+# Database
+sqlalchemy>=2.0.0
+psycopg2-binary>=2.9.0
+
+# Dashboard
+streamlit>=1.40.0
+plotly>=5.24.0
+pandas>=2.2.0
+
+# Utilities
+tqdm>=4.66.0
+rich>=13.0.0
