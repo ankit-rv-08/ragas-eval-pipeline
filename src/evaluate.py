@@ -111,7 +111,7 @@ def main() -> None:
     """Run RAGAS evaluation and save per-question results to Postgres."""
     _install_ragas_compatibility_shim()
     from ragas import evaluate
-    from ragas.embeddings import HuggingFaceEmbeddings as RagasHuggingFaceEmbeddings
+    from ragas.embeddings.base import LangchainEmbeddingsWrapper
     from ragas.llms import llm_factory
     from ragas.metrics._answer_relevance import AnswerRelevancy
     from ragas.metrics._context_precision import ContextPrecision
@@ -153,7 +153,7 @@ def main() -> None:
         ),
         temperature=0.0,
     )
-    embeddings = RagasHuggingFaceEmbeddings(model=EMBED_MODEL)
+    embeddings = LangchainEmbeddingsWrapper(rag.embeddings)
     faithfulness_metric = Faithfulness(llm=judge)
     answer_relevancy_metric = AnswerRelevancy(llm=judge, embeddings=embeddings)
     context_precision_metric = ContextPrecision(llm=judge)
