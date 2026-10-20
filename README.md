@@ -35,4 +35,3 @@ Start the dashboard shell with:
 streamlit run src/dashboard.py
 ```
 
-Evaluation execution will be added in `src/evaluate.py`; the dashboard currently shows the metric layout and expected command.
